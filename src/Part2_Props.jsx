@@ -25,11 +25,20 @@
 // The StudentBadge component below is hardcoded — it always shows the same text.
 // we will update this soon.
 
-function StudentBadge() {
+function StudentBadge(props) {
   return (
     <div>
-      <h3>Student Name</h3>
-      <p>Grade: 0</p>
+      <h3>{props.name}</h3>
+      <p>Grade: {props.grade}</p>
+    </div>
+  )
+}
+
+function TeacherCard(props) {
+  return (
+    <div>
+      <h3>Teacher: {props.name}</h3>
+      <p>Subject: {props.subject}</p>
     </div>
   )
 }
@@ -62,16 +71,19 @@ function SectionA() {
   //          Can you change a prop's value inside the component that receives it?
   //          Why or why not?
   //
-  //          answer:
+  //          answer: Props are 
+  //          1. Props are values passed into a component that can be used to adjust its content.
+  //          2. No because those values are read only
 
   return (
     <div>
       <h2>Section A — Props</h2>
-      <StudentBadge />
+      <StudentBadge name="Dylan" grade='A'/>
       {/* A1 + A2: Render two more StudentBadge components here */}
-
+      <StudentBadge name="John" grade='B'/>
+      <StudentBadge name="Clem" grade='C'/>
       {/* A3: Render your TeacherCard here */}
-
+      <TeacherCard name="Tyler" subject="Math"/>
     </div>
   )
 }
@@ -99,7 +111,19 @@ function SectionA() {
 //       then embed that variable in your JSX.
 //
 // Write PlayerCard here:
+function PlayerCard(props) {
+  let name = props.name
+  let score = props.score
+  let activeStatus = (props.isActive) ? "Active" : "Inactive"
 
+  return (
+    <div>
+      <h2>Player Name: {name}</h2>
+      <p>Score: {score}</p>
+      <p>Status: {activeStatus}</p>
+    </div>
+  )
+}
 
 
 function SectionB() {
@@ -112,7 +136,9 @@ function SectionB() {
     <div>
       <h2>Section B — Props with Different Types</h2>
       {/* Render your PlayerCard components here */}
-
+      <PlayerCard name="Dylan" score={99} isActive={true}/>
+      <PlayerCard name="John" score={70} isActive={false}/>
+      <PlayerCard name="Clem" score={100} isActive={true}/>
     </div>
   )
 }
